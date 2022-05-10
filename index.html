@@ -1,0 +1,83 @@
+<!DOCTYPE html5>
+<html lang="en">
+<head> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon.ico">
+  <title>Esolution challenge</title>  
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+</head>
+  <main class="hero">  
+    <div class="flex-container"> 
+      <img class="banner" src="./images/logo.svg" alt="logo of company">
+      <div class="form" > 
+        <form id="regForm" action="">  
+          <div class="tab">
+            <div class="question">
+              <h2>First name </h2>
+              <input  oninput="this.className = ''" required>
+            </div>
+            <div class="question">
+              <h2>Last name</h2>
+              <input  oninput="this.className = ''" required>
+            </div>
+            <div class="question">
+              <h2>Telephone number</h2>
+              <input  type="number" oninput="this.className = ''" required>
+            </div>
+            <div class="question">
+              <h2>Date of birth</h2>
+              <input  type="date" value="" oninput="this.className = ''" required>
+            </div>
+          </div>
+          <div class="tab">
+            <div class="question">
+              <h2>E-mail address</h2>
+              <input type="email" oninput="this.className = ''" required>
+            </div>
+            <div class="question">
+              <h2 >Password</h2>
+            <input  type="password" oninput="this.className = ''" required>
+            </div>
+            <div class="question">
+              <h2>Repeat password</h2>
+              <input type="password"  oninput="this.className = ''" required>
+            </div>
+          </div>
+          <div class="tab">
+            <div class="question">
+              <h2>What is your favourite color?</h2>
+              <input type="text"  oninput="this.className = ''">
+            </div>
+            <div class="question">
+              <h2>Where are you from?</h2>
+              <input  type="text"  oninput="this.className = ''">
+            </div>
+            <div class="question">
+              <h2>What is the name of your pet?</h2> 
+              <input  type="text"  oninput="this.className = ''">
+            </div>
+            <div class="question">
+              <h2>What is your favourite song?</h2>
+              <input type="text"  oninput="this.className = ''">
+            </div>
+          </div> 
+          <div >
+            <button type="button" id="prevBtn" class="sumbit" onclick="nextPrev(-1)">Previous</button>
+            <button type="button" id="nextBtn" class="sumbit" onclick="nextPrev(1)">Next</button>
+          </div>         
+        </form>
+      </div>
+      <div class="steps">
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+      </div>
+    </div>
+  </main>
+  <script src="app.js" defer></script>
+</body>
+</html>
