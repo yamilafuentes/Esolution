@@ -14,13 +14,11 @@ function showTab (_currentTab) {
     document.getElementById("nextBtn").innerHTML = "Submit"
   else
     document.getElementById("nextBtn").innerHTML = "Next"
-
   changeStep(_currentTab)
   showButton(_currentTab)
-  
 }
 
-function nextPrev (newTab) {
+async function nextPrev (newTab) {
   const tabs = document.getElementsByClassName("tab")
   if (newTab == 1 && !validateForm()) 
     return false
@@ -29,7 +27,8 @@ function nextPrev (newTab) {
   currentTab = currentTab + newTab
 
   if (currentTab >= tabs.length) {
-    document.getElementById("regForm").submit()
+    await submit()
+    location.reload()
     return false
   }
 
@@ -95,8 +94,7 @@ function showButton (_currentTab) {
 }
 
 
-
-async function sumbit () {
+async function submit () {
   const tabs = document.getElementsByClassName("tab")
   const user_data = [ 
     ...(tabs[0].getElementsByTagName("input")), 
@@ -104,8 +102,8 @@ async function sumbit () {
     ...(tabs[2].getElementsByTagName("input"))
   ].map(element => element.value)
 
-  const users = await fetch('https://6276815e15458100a6afdfa5.mockapi.io/api/v1/users'),
-        new_id = parseInt(users[users.length - 1].id) + 1
+  const users = await (await fetch('https://6276815e15458100a6afdfa5.mockapi.io/api/v1/users')).json()
+  const new_id = parseInt(users[users.length - 1].id) + 1
  
   const data = {
     "id": new_id,
@@ -121,7 +119,7 @@ async function sumbit () {
     "pet": user_data[9],
     "song": user_data[10],
   }
-
+  console.log(data)
   await fetch('https://6276815e15458100a6afdfa5.mockapi.io/api/v1/users', {
     method: 'POST',
     headers: {
@@ -130,4 +128,6 @@ async function sumbit () {
     },
     body: JSON.stringify(data)
   })
+  
 }
+
