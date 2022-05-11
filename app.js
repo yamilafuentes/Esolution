@@ -96,3 +96,38 @@ function showButton (_currentTab) {
 
 
 
+async function sumbit () {
+  const tabs = document.getElementsByClassName("tab")
+  const user_data = [ 
+    ...(tabs[0].getElementsByTagName("input")), 
+    ...(tabs[1].getElementsByTagName("input")), 
+    ...(tabs[2].getElementsByTagName("input"))
+  ].map(element => element.value)
+
+  const users = await fetch('https://6276815e15458100a6afdfa5.mockapi.io/api/v1/users'),
+        new_id = parseInt(users[users.length - 1].id) + 1
+ 
+  const data = {
+    "id": new_id,
+    "firstName": user_data[0],
+    "lastName": user_data[1],
+    "phone": user_data[2],
+    "birthday": (new Date(user_data[3])).valueOf(),
+    "email": user_data[4],
+    "password": user_data[5],
+    "repeatPassword": user_data[6],
+    "color": user_data[7],
+    "place": user_data[8],
+    "pet": user_data[9],
+    "song": user_data[10],
+  }
+
+  await fetch('https://6276815e15458100a6afdfa5.mockapi.io/api/v1/users', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+}
